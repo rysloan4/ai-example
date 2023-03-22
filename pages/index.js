@@ -47,24 +47,35 @@ export default function Home() {
         <h3></h3>
         <form onSubmit={onSubmit}>
           <label
-            for="place"
+            htmlFor="place"
           >Where are you going?</label>
           <input
             type="text"
             id="place"
             name="place"
-            placeholder="Enter a place"
+            placeholder="Tokyo"
+            value={placeInput}
+            onChange={(e) => setPlaceInput(e.target.value)}
+          />
+            <label
+            for="duration"
+          >How long are you going for?</label>
+          <input
+            type="text"
+            id="duration"
+            name="duration"
+            placeholder="10 days"
             value={placeInput}
             onChange={(e) => setPlaceInput(e.target.value)}
           />
           <label
-            for="place"
+            htmlFor="preferences"
           >What are you into?</label>
           <input
             type="text"
-            id="place"
-            name="place"
-            placeholder="Enter a place"
+            id="preferences"
+            name="preferences"
+            placeholder="Fashion, art, wong kar-wai"
             value={placeInput}
             onChange={(e) => setPlaceInput(e.target.value)}
           />
