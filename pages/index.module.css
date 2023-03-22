@@ -52,6 +52,11 @@
   color: #8e8ea0;
   opacity: 1;
 }
+.main label {
+  font-size: 20px;
+  line-height: 35px;
+  color: #202123;
+}
 .main input[type="submit"] {
   padding: 12px 0;
   color: #fff;
