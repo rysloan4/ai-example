@@ -57,7 +57,7 @@ export default async function (req, res) {
       model: "text-davinci-003",
       prompt: generatePrompt(tripInfo),
       temperature: 0.7,
-      max_tokens: 1000
+      max_tokens: 2000
     });
     res.status(200).json({ result: completion.data.choices[0].text });
   } catch(error) {

@@ -6,10 +6,12 @@ export default function Home() {
   const [placeInput, setPlaceInput] = useState("");
   const [preferencesInput, setPreferencesInput] = useState("");
   const [durationInput, setDurationInput] = useState("");
+  const [disabled, setDisabled] = useState(false);
   const [result, setResult] = useState();
 
   async function onSubmit(event) {
     event.preventDefault();
+    setDisabled(true)
     try {
       const response = await fetch("/api/generate", {
         method: "POST",
@@ -25,6 +27,7 @@ export default function Home() {
 
       const data = await response.json();
       if (response.status !== 200) {
+        setDisabled(false)
         throw data.error || new Error(`Request failed with status ${response.status}`);
       }
 
@@ -32,6 +35,7 @@ export default function Home() {
       setPlaceInput("");
       setPreferencesInput("");
       setDurationInput("");
+      setDisabled(false)
     } catch(error) {
       // Consider implementing your own error handling logic here
       console.error(error);
@@ -61,7 +65,7 @@ export default function Home() {
             onChange={(e) => setPlaceInput(e.target.value)}
           />
             <label
-            for="duration"
+            htmlFor="duration"
           >How long are you going for?</label>
           <input
             type="text"
@@ -82,9 +86,9 @@ export default function Home() {
             value={preferencesInput}
             onChange={(e) => setPreferencesInput(e.target.value)}
           />
-          <input type="submit" value="Plan my trip" />
+          <input type="submit" value="Plan my trip" disabled={disabled}/>
         </form>
-        <div className={styles.result}>{result}</div>
+        <body><div className={styles.result}> {result} </div></body>
       </main>
     </div>
   );
