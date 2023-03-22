@@ -5,6 +5,7 @@ import styles from "./index.module.css";
 export default function Home() {
   const [placeInput, setPlaceInput] = useState("");
   const [preferencesInput, setPreferencesInput] = useState("");
+  const [durationInput, setDurationInput] = useState("");
   const [result, setResult] = useState();
 
   async function onSubmit(event) {
@@ -17,7 +18,8 @@ export default function Home() {
         },
         body: JSON.stringify({ 
           place: placeInput,
-          preferences: preferencesInput 
+          preferences: preferencesInput,
+          duration: durationInput 
         }),
       });
 
@@ -29,6 +31,7 @@ export default function Home() {
       setResult(data.result);
       setPlaceInput("");
       setPreferencesInput("");
+      setDurationInput("");
     } catch(error) {
       // Consider implementing your own error handling logic here
       console.error(error);
@@ -65,8 +68,8 @@ export default function Home() {
             id="duration"
             name="duration"
             placeholder="10 days"
-            value={placeInput}
-            onChange={(e) => setPlaceInput(e.target.value)}
+            value={durationInput}
+            onChange={(e) => setDurationInput(e.target.value)}
           />
           <label
             htmlFor="preferences"
@@ -76,8 +79,8 @@ export default function Home() {
             id="preferences"
             name="preferences"
             placeholder="Fashion, art, wong kar-wai"
-            value={placeInput}
-            onChange={(e) => setPlaceInput(e.target.value)}
+            value={preferencesInput}
+            onChange={(e) => setPreferencesInput(e.target.value)}
           />
           <input type="submit" value="Plan my trip" />
         </form>
